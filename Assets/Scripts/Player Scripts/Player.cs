@@ -7,5 +7,4 @@ using System;
 public class Player : MonoBehaviour
 {
     public int level;
-    public List<Gun> inventory;    
 }

@@ -4,6 +4,6 @@ using UnityEngine;
 
 public class NewBehaviourScript : MonoBehaviour
 {
-    string type;
-    int durability;
+    private string bullettype;
+    private int durability;
 }
