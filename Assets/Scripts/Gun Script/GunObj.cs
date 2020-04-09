@@ -2,9 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GunObj : MonoBehaviour
+public class GunObj : MonoBehaviour 
 {
-    private string gunName;
-    private string ammoType;
-    private int Ammo;
+    public string gunName;
+    public string ammoType;
+    public int ammoClip;
+    public GunObj(string name, string ammoName)
+    {
+        gunName = name;
+        ammoType = ammoName;
+    }
+
+    public string GetGunName()
+    {
+        return gunName;
+    }
+
+    public string GetGunAmmo()
+    {
+        return ammoType;
+    }
 }

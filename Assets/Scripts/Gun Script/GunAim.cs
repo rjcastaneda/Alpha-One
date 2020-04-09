@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GunAimShoot : MonoBehaviour
+public class GunAim : MonoBehaviour
 {
 
     private Transform crosshairTransform;

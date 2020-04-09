@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+public class Bullet : MonoBehaviour
 {
-    private string bullettype;
-    private int durability;
+    public string bulletType;
+    public int durability;
+    public int stoppingPower;
 }

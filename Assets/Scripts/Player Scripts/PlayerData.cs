@@ -4,7 +4,8 @@ using UnityEngine;
 using System;
 
 [Serializable]
-public class Player : MonoBehaviour
+public class PlayerData : MonoBehaviour
 {
     public int level;
+    public List<string> weaponInventory;
 }
