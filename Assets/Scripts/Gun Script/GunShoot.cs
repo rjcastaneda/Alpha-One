@@ -10,7 +10,7 @@ public class GunShoot : MonoBehaviour
     private GameObject bullet;
 
 
-    private float bulletPower = 10f;
+    private const float bulletPower = 10f;
     private string preFabDir = "Assets/Prefabs/";
 
     private void Awake()
@@ -32,5 +32,6 @@ public class GunShoot : MonoBehaviour
         GameObject bulletFired = Instantiate(bullet, FP.position, FP.rotation);
         Rigidbody2D bulletFiredRB = bulletFired.GetComponent<Rigidbody2D>();
         bulletFiredRB.AddForce(FP.right * bulletPower, ForceMode2D.Impulse);
+        currentWeapon.ammoClip -= 1;
     }
 }

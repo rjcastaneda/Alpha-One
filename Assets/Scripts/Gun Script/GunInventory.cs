@@ -14,6 +14,9 @@ public class GunInventory : MonoBehaviour
         //Initialize variables, and set defaults.
         player = GameObject.Find("Player").GetComponent<PlayerData>();
         gunTransform = GameObject.Find("Gun").GetComponent<Transform>();
+        AddNewGun("M9");
+        AddNewGun("MP5");
+        AddNewGun("AK47");
         SetCurrentEquip("M9");
     }
 
@@ -28,21 +31,22 @@ public class GunInventory : MonoBehaviour
     void SetCurrentEquip(string name)
     {
         //Checks to see if player has the weapon in the inventory.
-        if(player.weaponInventory.Contains(name) == false) { return; }
+        if(player.weaponInventory.Contains(name) == false) { Debug.Log("No Weapon of that name."); return;  }
 
         //Iterates through the transform of "Gun" to activate the current weapon.
         GunObj weaponSearched;
-        foreach(GameObject gameGuns in gunTransform)
+        foreach(Transform gameGuns in gunTransform)
         {
-            weaponSearched = gameGuns.GetComponent<GunObj>();
+            weaponSearched = gameGuns.gameObject.GetComponent<GunObj>();
             if(weaponSearched.gunName == name)
             {
-                gameGuns.SetActive(true);
+                gameGuns.gameObject.SetActive(true);
                 selectedWeapon = weaponSearched;
+                Debug.Log("Weapon Set Successfully");
             }
             else
             {
-                gameGuns.SetActive(false);
+                gameGuns.gameObject.SetActive(false);
             }
         }
         return;
