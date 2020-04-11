@@ -4,23 +4,29 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    private Rigidbody2D playerRB;
     private Transform playerTransform;
-    private Vector3 mousePos;
-    private Camera cam;
+    private Vector2 direction;
 
+    private float mSpeed;
 
     // Start is called before the first frame update
-    void Awake()
+    private void Awake()
     {
         //Intialize variables.
+        playerRB = GameObject.Find("Player").GetComponent<Rigidbody2D>();
         playerTransform = GameObject.Find("Player").GetComponent<Transform>();
-        cam = GameObject.Find("Main Camera").GetComponent<Camera>();
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-        playerTransform.position = new Vector3(mousePos.x, mousePos.y, -1);
+        direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+    }
+
+    private void FixedUpdate()
+    {
+        if (Input.GetButton("SlowMovement")) { mSpeed = 1.5f; } else { mSpeed = 2.5f; }
+        playerRB.MovePosition((Vector2)playerTransform.position + (direction.normalized * mSpeed * Time.deltaTime));
     }
 }

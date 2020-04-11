@@ -10,6 +10,7 @@ public class WeaponShoot : MonoBehaviour
     private Transform FPTwo;
     private WeaponObj currentWeapon;
     private GameObject bullet;
+    private AudioSource bulletSound;
 
     private float shootInterval = 0f;
     private const float bulletPower = 10f;
@@ -21,11 +22,12 @@ public class WeaponShoot : MonoBehaviour
         currentWeapon = this.gameObject.GetComponent<WeaponObj>();
         preFabDir = preFabDir + currentWeapon.ammoType + ".prefab";
         bullet = (GameObject)AssetDatabase.LoadAssetAtPath(preFabDir, typeof(GameObject));
+        bulletSound = bullet.GetComponent<AudioSource>();
         FPM = this.transform.Find("FPM");
     }
     void Update()
     {
-      if (Input.GetMouseButton(0) && Time.time >= shootInterval)
+      if (Input.GetButton("Fire1") && Time.time >= shootInterval)
       {
         shootInterval = Time.time + 1f / currentWeapon.FireSpeed;
         Shoot();

@@ -7,6 +7,7 @@ using System;
 public class PlayerData : MonoBehaviour
 {
     public int level;
+    public int lives;
     public List<string> weaponInventory;
     public List<string> upgrades;
 }
