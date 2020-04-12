@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BGLoop : MonoBehaviour
 {
-    private float scrollSpeed = -3f;
+    private float scrollSpeed = -1f;
     private float bgSizeY = 16f;
     private Vector3 startPos;
 

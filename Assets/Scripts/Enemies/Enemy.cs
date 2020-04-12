@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public float health;
-    public int scoreOnDestroy;
     private Animator enemyAnimator;
+    private Component[] enemyColliders;
+    private PlayerData player;
+
+    public float health;
+    public string type;
+    public int enemyScore;
     public bool isDead;
     
     // Start is called before the first frame update
     void Start()
     {
         enemyAnimator = this.gameObject.GetComponent<Animator>();
+        enemyColliders = this.gameObject.GetComponents(typeof(Collider2D));
+        player = GameObject.Find("Player").GetComponent<PlayerData>();
         isDead = false;
     }
 
@@ -27,16 +33,12 @@ public class Enemy : MonoBehaviour
         if(!isDead)
         {
             enemyAnimator.SetTrigger("Dead");
-            this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            foreach(Collider2D Colliders in enemyColliders) { Colliders.enabled = false; }
             Destroy(this.gameObject, 1f);
+            player.score = player.score + enemyScore;
             isDead = true;
         }
        
-    }
-
-    void Shoot()
-    {
-
     }
 
     public void takeDamage(float damage)
