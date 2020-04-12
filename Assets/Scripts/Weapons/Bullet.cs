@@ -10,7 +10,7 @@ public class Bullet : MonoBehaviour
     public string bulletType;
     public float  damage;
 
-    //timeBeforeDestroy = 1.5 seconds
+    //timeBeforeDestroy = 2 seconds
     private float timeBeforeDestroy = 2f;
 
     public void Awake()
@@ -27,7 +27,7 @@ public class Bullet : MonoBehaviour
             bulletAnimator.SetTrigger("Hit");
             collision.gameObject.GetComponent<Enemy>().takeDamage(damage);
             bulletCollider.enabled = false;
-            Destroy(this.gameObject,.05f);
+            Destroy(this.gameObject,.15f);
         }
     }
 }

@@ -11,7 +11,7 @@ public class WeaponShoot : MonoBehaviour
     private GameObject bullet;
 
     private float shootInterval = 0f;
-    private const float bulletPower = 10f;
+    private const float bulletPower = 15f;
 
     private void Awake()
     {
