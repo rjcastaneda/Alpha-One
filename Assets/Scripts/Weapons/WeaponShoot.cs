@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class WeaponShoot : MonoBehaviour
 {
@@ -9,15 +10,19 @@ public class WeaponShoot : MonoBehaviour
     private Transform FPTwo;
     private WeaponObj currentWeapon;
     private GameObject bullet;
+    private AudioSource bulletSound;
 
     private float shootInterval = 0f;
-    private const float bulletPower = 15f;
+    private const float bulletPower = 10f;
+    private string preFabDir = "Assets/Prefabs/";
 
     private void Awake()
     {
         //Initialize variables and objects.
         currentWeapon = this.gameObject.GetComponent<WeaponObj>();
-        bullet = Resources.Load<GameObject>(currentWeapon.ammoType);
+        preFabDir = preFabDir + currentWeapon.ammoType + ".prefab";
+        bullet = (GameObject)AssetDatabase.LoadAssetAtPath(preFabDir, typeof(GameObject));
+        bulletSound = bullet.GetComponent<AudioSource>();
         FPM = this.transform.Find("FPM");
     }
     void Update()
