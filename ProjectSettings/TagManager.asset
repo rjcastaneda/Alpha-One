@@ -4,14 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
-<<<<<<< HEAD
-  - Wall
-  - Ground
-=======
   - Bullet
   - InvisibleWall
   - Enemy
->>>>>>> c81f61f0c6e7c654e85c2d058a6933143246f6b5
+  - Ground
   layers:
   - Default
   - TransparentFX
@@ -21,17 +17,11 @@ TagManager:
   - UI
   - 
   - 
-<<<<<<< HEAD
-  - 
-  - 
-  - 
-=======
   - Bullets
   - Enemies
   - InvisibleWalls
->>>>>>> c81f61f0c6e7c654e85c2d058a6933143246f6b5
-  - 
-  - 
+  - EnemyBullets
+  - Player
   - 
   - 
   - 

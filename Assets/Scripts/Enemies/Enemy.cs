@@ -35,13 +35,13 @@ public class Enemy : MonoBehaviour
             enemyAnimator.SetTrigger("Dead");
             foreach(Collider2D Colliders in enemyColliders) { Colliders.enabled = false; }
             Destroy(this.gameObject, 1f);
-            player.score = player.score + enemyScore;
+            player.score += enemyScore;
             isDead = true;
         }
        
     }
 
-    public void takeDamage(float damage)
+    public void TakeDamage(float damage)
     {
         health -= damage;
     }

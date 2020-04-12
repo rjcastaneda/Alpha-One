@@ -22,12 +22,19 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.CompareTag("Enemy") )
         {
             bulletAnimator.SetTrigger("Hit");
-            collision.gameObject.GetComponent<Enemy>().takeDamage(damage);
+            collision.gameObject.GetComponent<Enemy>().TakeDamage(damage);
             bulletCollider.enabled = false;
             Destroy(this.gameObject,.15f);
+        }
+
+        if (collision.gameObject.CompareTag("InvisibleWall"))
+        {
+            bulletAnimator.SetTrigger("Hit");
+            bulletCollider.enabled = false;
+            Destroy(this.gameObject, .15f);
         }
     }
 }

@@ -7,70 +7,76 @@ public class EnemyShoot : MonoBehaviour
 {
     private Transform player;
     private Transform FPM;
-    private Enemy thisEnemy;
-    private EnemyBulletPool bulletPool;
 
-    private const float bulletPower = 5f;
-    private string enemyType;
-    
+    private const float bulletPower = 2f;
+    private const float delayShot = 5f;
 
     public List<BulletPatterns> shootPatterns;
-    public const float FLIP = -1f;
-    public float timeInterval = 0f;
+    public float timeInterval;
+    
+    public bool shootAble;
 
     private void Awake()
     {
         //Initialize variables and objects.
         player = GameObject.Find("Player").GetComponent<Transform>();
-        thisEnemy = this.gameObject.GetComponent<Enemy>();
         FPM = this.transform.Find("EnemyFP");
-        bulletPool = GameObject.Find("EnemyBulletPool").GetComponent<EnemyBulletPool>();
     }
     public void Update()
     {
-        //chooses random pattern from list and shoots it.
-        //There is a grace period after each shot;
-        ShootByInterval();
+       //chooses random pattern from list and shoots it.
+       //There is a grace period after each shot;
+       int rIndex = Random.Range(0, shootPatterns.Count);
+       if (Time.time >= timeInterval) 
+       {
+           timeInterval = Time.time + 1f + delayShot;
+           if (!shootPatterns[rIndex].burstFire )
+           {
+              Shoot(shootPatterns[rIndex]);
+           }
+
+           if(shootPatterns[rIndex].burstFire)
+           {
+              StartCoroutine(BurstFire(shootPatterns[rIndex]));
+           }
+       }
     }
 
-    void ShootByInterval(BulletPatterns pattern)
+    private IEnumerator BurstFire(BulletPatterns pattern)
     {
-        if (Time.time >= timeInterval)
+        int x = 0;
+        while(x < pattern.burstAmount)
         {
-            Shoot();
-            timeInterval = Time.time + 1f + pattern.interval;
+            Shoot(pattern);
+            yield return new WaitForSeconds(pattern.burstFireDelay);
+            x++;
         }
     }
 
-    void Shoot(BulletPatterns pattern)
+    private void Shoot(BulletPatterns pattern)
     {
         GameObject bulletToShoot;
         Rigidbody2D bulletToShootRB;
-        Vector2 direction;
-        float stepAngle = pattern.angleOne - pattern.angleTwo;
+        Vector2 directionFire;
+        float stepAngle = (pattern.angleOne - pattern.angleTwo) / pattern.numShots;
         float dirAngle = pattern.angleOne;
-        
+        float fireX;
+        float fireY;
 
-        if(!pattern.aimPlayer && pattern.rotation)
+        for (int x = 0; x < pattern.numShots; x++)
         {
-            for (int x = 0; x < pattern.numShots; x++)
-            {
-                direction = new Vector2()
-                bulletToShoot = bulletPool.getFromPool();
-                bulletToShootRB = bulletFired.GetComponent<Rigidbody2D>();
-                bulletToShootRB.AddForce(, ForceMode2D.Impulse);
-            }
+            //Grab bullet, set it at the FP.
+            bulletToShoot = EnemyBulletPool.Instance.GetFromPool();
+            bulletToShootRB = bulletToShoot.GetComponent<Rigidbody2D>();
+            bulletToShoot.transform.position = FPM.position;
 
-        }
+            //Get direction to shoot at.
+            fireX = Mathf.Cos((dirAngle * Mathf.PI) / 180f);
+            fireY = Mathf.Sin((dirAngle * Mathf.PI) / 180f);
+            directionFire = new Vector2(fireX, fireY);
+            bulletToShootRB.AddForce((directionFire * bulletPower), ForceMode2D.Impulse);
 
-        if(!pattern.aimPlayer && !pattern.rotation)
-        {
-
-        }
-
-        if(pattern.aimPlayer)
-        {
-
+            dirAngle += stepAngle;
         }
     }
 }

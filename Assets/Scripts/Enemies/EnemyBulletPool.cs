@@ -13,7 +13,7 @@ public class EnemyBulletPool : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        enemyBullet = (GameObject)Resources.Load("enemyBullet");
+        enemyBullet = (GameObject)Resources.Load<GameObject>("enemyBullet");
     }
 
     private void Start()
@@ -26,9 +26,10 @@ public class EnemyBulletPool : MonoBehaviour
         }
     }
 
-    public GameObject getFromPool()
+    public GameObject GetFromPool()
     {
         GameObject bulletGet = enemyBullets.Dequeue();
+        bulletGet.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
         bulletGet.SetActive(true);
         enemyBullets.Enqueue(bulletGet);
         return bulletGet;

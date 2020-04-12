@@ -5,8 +5,8 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     private PlayerData playerData;
-    private bool invincible = false;
-    private bool playerDead = false;
+    public bool invincible;
+    public bool playerDead;
     private void Start()
     {
         playerData = this.gameObject.GetComponent<PlayerData>();
@@ -16,21 +16,25 @@ public class Player : MonoBehaviour
     {
        if(playerData.lives < 0)
         {
-            death();
+            Death();
         }
     }
-
-    public void takeDamage()
+    public IEnumerator DamageTimer(float delay)
+    {
+        invincible = true;
+        yield return new WaitForSeconds(delay);
+        invincible = false;
+    }
+    public void TakeDamage()
     {
         if(!invincible)
         {
-            invincible = true;
             playerData.lives -= 1;
-            yield return WaitForSeconds(3f);
+            StartCoroutine(DamageTimer(5f));
         }
     }
 
-    public void death()
+    public void Death()
     {
         playerDead = true;
         this.gameObject.SetActive(false);
