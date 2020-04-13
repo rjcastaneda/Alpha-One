@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 790864863111294066}
   - component: {fileID: 790864863111294069}
   - component: {fileID: 5970818771786268722}
+  - component: {fileID: 4805649141719298767}
   m_Layer: 9
   m_Name: EnemyGrunt
   m_TagString: Enemy
@@ -97,7 +98,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 790864863111294060}
-  m_BodyType: 2
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -109,7 +110,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &790864863111294064
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -193,10 +194,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4e8db0df1d875249b61902dbb1c495d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 30
-  type: 
-  enemyScore: 0
+  health: 300
+  movementSpeed: 1
+  type: Grunt
+  enemyScore: 200
   isDead: 0
+  justSpawned: 0
+  moveLeft: 0
+  moveRight: 0
 --- !u!114 &5970818771786268722
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -213,8 +218,20 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a834f94209d95fb47a5d186b7cbde5e4, type: 2}
   - {fileID: 11400000, guid: 949b97042f4499543a212c973e17518f, type: 2}
   timeInterval: 0.25
-  delayShot: 0.25
   shootAble: 0
+--- !u!114 &4805649141719298767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 790864863111294060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe2eb7128e4a2ab4cba78922c8bac9f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ogPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &790864864490563648
 GameObject:
   m_ObjectHideFlags: 0

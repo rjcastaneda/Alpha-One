@@ -20,6 +20,7 @@ public class WeaponShoot : MonoBehaviour
         bullet = Resources.Load<GameObject>(currentWeapon.ammoType);
         FPM = this.transform.Find("FPM");
     }
+
     void Update()
     {
       if (Input.GetButton("Fire1") && Time.time >= shootInterval)
