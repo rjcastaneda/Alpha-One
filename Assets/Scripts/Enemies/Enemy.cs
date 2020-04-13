@@ -59,7 +59,7 @@ public class Enemy : MonoBehaviour
         {
             enemyAnimator.SetTrigger("Dead");
             foreach(Collider2D Colliders in enemyColliders) { Colliders.enabled = false; }
-            Destroy(this.gameObject, 1f);
+            Destroy(this.gameObject, .5f);
             player.score += enemyScore;
             isDead = true;
         }
