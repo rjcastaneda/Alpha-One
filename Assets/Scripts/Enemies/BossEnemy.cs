@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class BossEnemy : MonoBehaviour
 {
     private Animator enemyAnimator;
     private EnemyMoveController thisMoveController;
@@ -23,8 +23,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         thisEnemyShoot = this.gameObject.GetComponent<EnemyShoot>();
-        if(type == "Boss") { enemyAnimator = this.gameObject.transform.GetChild(0).GetComponent<Animator>(); }
-        else { enemyAnimator = this.gameObject.GetComponent<Animator>(); }
+        enemyAnimator = this.gameObject.transform.GetChild(0).GetComponent<Animator>();
         thisMoveController = this.gameObject.GetComponent<EnemyMoveController>();
         enemyColliders = this.gameObject.GetComponents(typeof(Collider2D));
         player = GameObject.Find("Player").GetComponent<PlayerData>();
@@ -42,10 +41,10 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (health < 0){ Death(); }
+        if (health < 0) { Death(); }
         if (!justSpawned) { thisEnemyShoot.enabled = true; }
-        if (justSpawned) 
-        { 
+        if (justSpawned)
+        {
             thisEnemyShoot.enabled = false;
             thisMoveController.MoveToPlayField();
         }
@@ -56,15 +55,15 @@ public class Enemy : MonoBehaviour
 
     void Death()
     {
-        if(!isDead)
+        if (!isDead)
         {
             enemyAnimator.SetTrigger("Dead");
-            foreach(Collider2D Colliders in enemyColliders) { Colliders.enabled = false; }
+            foreach (Collider2D Colliders in enemyColliders) { Colliders.enabled = false; }
             Destroy(this.gameObject, .5f);
             player.score += enemyScore;
             isDead = true;
         }
     }
 
-    public void TakeDamage(float damage){ health -= damage; }
+    public void TakeDamage(float damage) { health -= damage; }
 }
