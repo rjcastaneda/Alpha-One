@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewBulletPattern", menuName = "BulletPattern")]
+//Scriptable Object to create different kinds of pattern templates.
 public class BulletPatterns : ScriptableObject
 {
    public string patternName;

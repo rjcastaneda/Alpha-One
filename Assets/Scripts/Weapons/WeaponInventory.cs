@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WeaponInventory : MonoBehaviour
 {
-    private PlayerData player;
+    private PlayerData _playerData;
     private Transform wepTransform;
 
     public WeaponObj selectedWeapon;
@@ -13,7 +13,7 @@ public class WeaponInventory : MonoBehaviour
     private void Awake()
     {
         //Initialize variables, and set defaults.
-        player = GameObject.Find("Player").GetComponent<PlayerData>();
+        _playerData = GameObject.Find("Player").GetComponent<PlayerData>();
         wepTransform = GameObject.Find("Weapons").GetComponent<Transform>();
         AddNewWep("Basic Blaster");
         SetCurrentEquip("Basic Blaster");
@@ -29,7 +29,7 @@ public class WeaponInventory : MonoBehaviour
     void SetCurrentEquip(string name)
     {
         //Checks to see if player has the weapon in the inventory.
-        if(player.weaponInventory.Contains(name) == false) { Debug.Log("No Weapon of that name."); return;  }
+        if(_playerData.weaponInventory.Contains(name) == false) { Debug.Log("No Weapon of that name."); return;  }
 
         //Iterates through the transform of "Gun" to activate the current weapon.
         WeaponObj weaponSearched;
@@ -51,5 +51,5 @@ public class WeaponInventory : MonoBehaviour
     }
 
     //Function for the weapon pick-up item
-    public void AddNewWep(string name) { player.weaponInventory.Add(name); }
+    public void AddNewWep(string name) { _playerData.weaponInventory.Add(name); }
 }

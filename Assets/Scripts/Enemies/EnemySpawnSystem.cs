@@ -16,6 +16,7 @@ public class EnemySpawnSystem : MonoBehaviour
 
     public bool isWaiting;
     public bool isSpawning;
+    public bool allWavesCleared;
     public int nextWave;
     public Wave[] waves;
     public Transform[] spawnPoints;
@@ -25,6 +26,7 @@ public class EnemySpawnSystem : MonoBehaviour
 
     private void Awake()
     {
+        //Set defaults.
         nextWave = 0;
         checkInterval = 2f;
         isWaiting = false;
@@ -33,13 +35,14 @@ public class EnemySpawnSystem : MonoBehaviour
 
     private void Update()
     {
-        if(isWaiting)
+        if (isWaiting)
         {
-            if(!EnemyAlive())
+            if (!EnemyAlive())
             {
                 isSpawning = true;
                 isWaiting = false;
             }
+            
             else
             {
                 return;
@@ -48,6 +51,7 @@ public class EnemySpawnSystem : MonoBehaviour
 
         if(isSpawning)
         {
+            if(allWavesCleared){ return; }
             StartCoroutine(SpawnWave(waves[nextWave]));
             isSpawning = false;
         }
@@ -55,7 +59,7 @@ public class EnemySpawnSystem : MonoBehaviour
 
     public bool EnemyAlive()
     {
-        Debug.Log("Searching");
+        //We check if enemies are alive at an interval to reduce stress on the engine.
         checkInterval = checkInterval - Time.deltaTime;
         if( checkInterval <= 0f)
         {
@@ -63,6 +67,7 @@ public class EnemySpawnSystem : MonoBehaviour
             if (GameObject.FindGameObjectWithTag("Enemy") == null)
             {
                 nextWave++;
+                if (nextWave == waves.Length){ allWavesCleared = true; }
                 Debug.Log("No Enemies");
                 return false;
             }
@@ -73,6 +78,7 @@ public class EnemySpawnSystem : MonoBehaviour
 
      IEnumerator SpawnWave(Wave toSpawn)
     {
+        //For loop to spawn enemies a number of times, given the size of the wave.
         for(int x = 0; x < toSpawn.numEnemies; x++)
         {
             SpawnEnemy(toSpawn.enemy,toSpawn.isBoss);
@@ -86,12 +92,14 @@ public class EnemySpawnSystem : MonoBehaviour
 
     void SpawnEnemy(GameObject enemy, bool isBoss)
     {
+        //If the enemy wave is not a boss wave, we spawn enemies randomly from the list of spawnpoints.
         if(!isBoss)
         {
             int rndIndex = Random.Range(0, spawnPoints.Length);
             Instantiate(enemy, spawnPoints[rndIndex].transform.position, spawnPoints[rndIndex].transform.rotation);
         }
 
+        //If the enemy is the boss, we spawn them in the spawnpoint close to the middle.
         if(isBoss)
         {
             int midSpawn = spawnPoints.Length / 2;

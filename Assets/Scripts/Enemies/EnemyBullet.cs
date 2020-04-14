@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//For the enemy bullet objects. Handles the collisions of the bullet.
 public class EnemyBullet : MonoBehaviour
 {
     private IEnumerator DelayTimer(float delay)

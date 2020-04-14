@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+//An object pool system for the enemy bullets to reduce lag.
 public class EnemyBulletPool : MonoBehaviour
 {
     private Queue<GameObject> enemyBullets = new Queue<GameObject>();

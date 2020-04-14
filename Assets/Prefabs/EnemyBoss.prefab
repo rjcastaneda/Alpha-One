@@ -282,7 +282,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4e8db0df1d875249b61902dbb1c495d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100000
+  health: 70000
   movementSpeed: 2
   type: Boss
   enemyScore: 20000

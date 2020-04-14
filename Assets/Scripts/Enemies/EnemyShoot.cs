@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EnemyShoot : MonoBehaviour
 {
-    private Transform player;
     private Transform FPM;
 
     private const float bulletPower = 2f;
@@ -17,8 +16,6 @@ public class EnemyShoot : MonoBehaviour
 
     private void Awake()
     {
-        //Initialize variables and objects.
-        player = GameObject.Find("Player").GetComponent<Transform>();
         FPM = this.transform.Find("EnemyFP");
     }
     public void Update()
@@ -41,6 +38,8 @@ public class EnemyShoot : MonoBehaviour
        }
     }
 
+    //If the pattern is a burst fire, it will shoot the same pattern a number of times 
+    //Before shooting the next volley.
     private IEnumerator BurstFire(BulletPatterns pattern)
     {
         int x = 0;
@@ -52,6 +51,8 @@ public class EnemyShoot : MonoBehaviour
         }
     }
 
+    //To shoot a pattern, we use trigonometry and a for loop to make bullets shoot
+    //at different ways based on the number of bullets in the volley.
     private void Shoot(BulletPatterns pattern)
     {
         GameObject bulletToShoot;

@@ -18,6 +18,9 @@ public class EnemyMoveController : MonoBehaviour
         waypointRuler = GameObject.Find("EnemyWaypoint").GetComponent<Transform>();
     }
 
+    //On spawn, we want to make the enemy move to the game field
+    //This is done by moving towards the location of a waypoint 
+    //In the scene.
     public void MoveToPlayField()
     {
         Vector3 target = new Vector3(enemyT.position.x, waypointRuler.position.y,enemyT.position.z);
@@ -29,17 +32,19 @@ public class EnemyMoveController : MonoBehaviour
         }
     }
 
+    //Enemy will oscillate to the left.
     public void EnemyMoveL(float amt, float movementSpd)
     {
         Vector3 crntPosition = ogPosition;
-        ogPosition.x += amt * Mathf.Sin(Time.time * movementSpd);
+        ogPosition.x += amt * Mathf.Sin(Time.time * Time.timeScale * movementSpd);
         enemyT.position = crntPosition;
     }
 
+    //Enemy will oscillate ot the right.
     public void EnemyMoveR(float amt, float movementSpd)
     {
         Vector3 crntPosition = ogPosition;
-        ogPosition.x += amt * -Mathf.Sin(Time.time * movementSpd);
+        ogPosition.x += amt * -Mathf.Sin(Time.time * Time.timeScale * movementSpd);
         enemyT.position = crntPosition;
     }
 }

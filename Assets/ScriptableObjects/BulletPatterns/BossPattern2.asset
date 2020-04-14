@@ -18,4 +18,4 @@ MonoBehaviour:
   angleTwo: 180
   burstFireDelay: 0.5
   numShots: 20
-  burstAmount: 20
+  burstAmount: 25

@@ -33,6 +33,8 @@ public class Enemy : MonoBehaviour
 
     private void Awake()
     {
+        //On awake, the enemy will be assigned randomly different movement
+        //patterns.
         moveLeft = Random.Range(-1, 2) == 0;
         moveRight = !moveLeft;
         justSpawned = true;
@@ -43,6 +45,7 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         if (health < 0){ Death(); }
+        //If the enemy just spawned, it should not shoot, until it is in the game field.
         if (!justSpawned) { thisEnemyShoot.enabled = true; }
         if (justSpawned) 
         { 

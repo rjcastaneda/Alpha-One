@@ -16,10 +16,7 @@ public class Player : MonoBehaviour
 
     public void Update()
     {
-       if(playerData.lives <= 0 && !playerDead)
-        {
-            StartCoroutine(Death());
-        }
+       if(playerData.lives <= 0 && !playerDead){ StartCoroutine(Death()); }
     }
     public IEnumerator DamageTimer(float delay)
     {

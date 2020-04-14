@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WeaponShoot : MonoBehaviour
 {
-    private PlayerData playerData;
+    private PlayerData _playerData;
     private Transform FPM;
     private Transform FPOne;
     private Transform FPTwo;
@@ -21,7 +21,7 @@ public class WeaponShoot : MonoBehaviour
         //Initialize variables, objects, and defaults.
         currentWeapon = this.gameObject.GetComponent<WeaponObj>();
         bullet = Resources.Load<GameObject>(currentWeapon.ammoType);
-        playerData = GameObject.Find("Player").GetComponent<PlayerData>();
+        _playerData = GameObject.Find("Player").GetComponent<PlayerData>();
         FPM = this.transform.Find("FPM");
         FPOne = this.transform.Find("FP1");
         FPTwo = this.transform.Find("FP2");
@@ -31,14 +31,15 @@ public class WeaponShoot : MonoBehaviour
     {
       if (Input.GetButton("Fire1") && Time.time >= shootInterval)
       {
-        shootInterval = Time.time + 1f / (currentWeapon.FireSpeed * playerData.asMod);
+        shootInterval = Time.time + 1f / (currentWeapon.FireSpeed * _playerData.asMod);
         Shoot();
       }
-      wShot = playerData.wShot;
+      wShot = _playerData.wShot;
     }
 
     void Shoot()
     {
+        //For singular fire.
         if(!wShot)
         {
             GameObject bulletFired = Instantiate(bullet, FPM.position, FPM.rotation);
@@ -46,6 +47,7 @@ public class WeaponShoot : MonoBehaviour
             bulletFiredRB.AddForce(FPM.up * bulletPower, ForceMode2D.Impulse);
         }
         
+        //For multiple file.
         if(wShot)
         {
             GameObject bulletFired = Instantiate(bullet, FPM.position, FPM.rotation);
