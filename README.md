@@ -1,4 +1,5 @@
 Game Name: Alpha One
+
 Game Type: Bullet Hell/ShootEmUp
 
 # Synopsis
@@ -9,9 +10,13 @@ Fight your way through waves of enemies to protect Earth from extraterrestrials.
 # Game Controls
 
 ESCAPE - Pause the game
+
 ARROW KEYS - Shoot
+
 NUM1 - Switch to Basic Blaster
+
 NUM2 - Switch to Shock Blaster (After it's obtained)
+
 LEFT CTRL - to slow movement
 
 # Game Tips
