@@ -8,6 +8,7 @@ TagManager:
   - InvisibleWall
   - Enemy
   - Ground
+  - Item
   layers:
   - Default
   - TransparentFX
@@ -22,7 +23,7 @@ TagManager:
   - InvisibleWalls
   - EnemyBullets
   - Player
-  - 
+  - Items
   - 
   - 
   - 

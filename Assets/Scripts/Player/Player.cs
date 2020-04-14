@@ -6,19 +6,17 @@ public class Player : MonoBehaviour
 {
     private PlayerData playerData;
     private Animator playerAnimator;
-    private WeaponShoot playerShoot;
     public bool invincible;
     public bool playerDead;
     private void Start()
     {
         playerData = this.gameObject.GetComponent<PlayerData>();
         playerAnimator = this.gameObject.GetComponent<Animator>();
-        playerShoot = this.gameObject.GetComponent<WeaponShoot>();
     }
 
     public void Update()
     {
-       if(playerData.lives <= 0)
+       if(playerData.lives <= 0 && !playerDead)
         {
             StartCoroutine(Death());
         }
@@ -44,7 +42,6 @@ public class Player : MonoBehaviour
     {
         playerDead = true;
         playerAnimator.SetTrigger("Dead");
-        playerShoot.enabled = false;
         yield return new WaitForSeconds(.5f);
         this.gameObject.SetActive(false);
     }

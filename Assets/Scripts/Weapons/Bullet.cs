@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour
 {
     private Animator bulletAnimator;
     private Collider2D bulletCollider;
+    private PlayerData playerData;
 
     public string bulletType;
     public float  damage;
@@ -17,6 +18,7 @@ public class Bullet : MonoBehaviour
     {
        bulletAnimator = this.gameObject.GetComponent<Animator>();
        bulletCollider = this.gameObject.GetComponent<Collider2D>();
+       playerData = GameObject.Find("Player").GetComponent<PlayerData>();
        Destroy(this.gameObject, timeBeforeDestroy);
     }
 
@@ -25,7 +27,7 @@ public class Bullet : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy") )
         {
             bulletAnimator.SetTrigger("Hit");
-            collision.gameObject.GetComponent<Enemy>().TakeDamage(damage);
+            collision.gameObject.GetComponent<Enemy>().TakeDamage(damage * playerData.attackMod);
             bulletCollider.enabled = false;
             Destroy(this.gameObject,.15f);
         }

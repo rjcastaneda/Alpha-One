@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5681531783309879233}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.03, z: 0}
+  m_LocalPosition: {x: 0, y: -0.45, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5681531784324437572}
@@ -205,7 +205,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 1.4782923, y: 1.0088341}
+  m_Offset: {x: 1.4509033, y: 1.0088341}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -216,7 +216,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.3924735, y: 0.9653783}
+  m_Size: {x: 1.4472516, y: 0.9653783}
   m_EdgeRadius: 0
 --- !u!61 &5681531784324437568
 BoxCollider2D:
@@ -231,7 +231,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.009209037, y: 0.23093486}
+  m_Offset: {x: -0.009393305, y: 0.23093486}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -242,7 +242,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.5025551, y: 2.5211768}
+  m_Size: {x: 1.4653506, y: 2.5211768}
   m_EdgeRadius: 0
 --- !u!61 &5681531784324437571
 BoxCollider2D:
@@ -282,7 +282,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4e8db0df1d875249b61902dbb1c495d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 7500
+  health: 100000
   movementSpeed: 2
   type: Boss
   enemyScore: 20000
@@ -317,8 +317,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shootPatterns:
   - {fileID: 11400000, guid: 37f23f3d39d8e09499f86cea0c6c085d, type: 2}
-  - {fileID: 11400000, guid: 949b97042f4499543a212c973e17518f, type: 2}
-  - {fileID: 11400000, guid: 949b97042f4499543a212c973e17518f, type: 2}
+  - {fileID: 11400000, guid: c64a5052374e4ee4cbbbb03c53251e22, type: 2}
+  - {fileID: 11400000, guid: 51903d9ea2f506143af34fddb7193d0e, type: 2}
   timeInterval: 5
   shootAble: 0
 --- !u!212 &4888629134012825438

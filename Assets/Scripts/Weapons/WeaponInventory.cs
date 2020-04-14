@@ -6,6 +6,7 @@ public class WeaponInventory : MonoBehaviour
 {
     private PlayerData player;
     private Transform wepTransform;
+
     public WeaponObj selectedWeapon;
     
 
@@ -14,15 +15,14 @@ public class WeaponInventory : MonoBehaviour
         //Initialize variables, and set defaults.
         player = GameObject.Find("Player").GetComponent<PlayerData>();
         wepTransform = GameObject.Find("Weapons").GetComponent<Transform>();
-        AddNewWep("BasicBlaster");
-        AddNewWep("ShockBlaster");
-        SetCurrentEquip("BasicBlaster");
+        AddNewWep("Basic Blaster");
+        SetCurrentEquip("Basic Blaster");
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1)) { SetCurrentEquip("BasicBlaster"); }
-        if (Input.GetKeyDown(KeyCode.Alpha2)) { SetCurrentEquip("ShockBlaster"); }
+        if (Input.GetKeyDown(KeyCode.Alpha1)) { SetCurrentEquip("Basic Blaster"); }
+        if (Input.GetKeyDown(KeyCode.Alpha2)) { SetCurrentEquip("Shock Blaster"); }
     }
 
     //Sets the weapon to be used by the player.
@@ -51,5 +51,5 @@ public class WeaponInventory : MonoBehaviour
     }
 
     //Function for the weapon pick-up item
-    void AddNewWep(string name) { player.weaponInventory.Add(name); }
+    public void AddNewWep(string name) { player.weaponInventory.Add(name); }
 }

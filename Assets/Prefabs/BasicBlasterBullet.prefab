@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletType: BasicBlasterBullet
-  damage: 1
+  damage: 10
 --- !u!95 &2633618817476358681
 Animator:
   serializedVersion: 3

@@ -7,7 +7,10 @@ using System;
 public class PlayerData : MonoBehaviour
 {
     public List<string> weaponInventory;
-    public List<string> upgrades;
+    public List<Item> upgrades;
+    public float attackMod;
+    public float asMod;
+    public bool wShot;
     public int level;
     public int score;
     public int lives;
